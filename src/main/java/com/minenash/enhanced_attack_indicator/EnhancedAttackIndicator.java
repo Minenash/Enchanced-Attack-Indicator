@@ -26,9 +26,8 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 		if (Config.showBlockBreaking) {
 			float breakingProgress = MinecraftClient.getInstance().interactionManager.getBlockBreakingProgress();
 
-
 			if (breakingProgress > 0)
-				return breakingProgress;
+				return breakingProgress / 10;
 		}
 
 		if (Config.showRangeWeaponDraw) {
