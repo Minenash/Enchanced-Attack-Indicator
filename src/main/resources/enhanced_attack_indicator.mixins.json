@@ -4,8 +4,7 @@
   "package": "com.minenash.enhanced_attack_indicator.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "InGameHudMixin",
-    "ClientPlayerInteractionManagerAccessor"
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

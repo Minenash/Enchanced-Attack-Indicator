@@ -248,7 +248,7 @@ public abstract class MidnightConfig {
             }));
 
             this.list = new MidnightConfigListWidget(this.client, this.width, this.height - 64, 32, 25);
-            if (this.client != null && this.client.world != null) this.list.setRenderBackground(false);
+//            if (this.client != null && this.client.world != null) this.list.getRowWidth(false);
             this.addSelectableChild(this.list);
             for (EntryInfo info : entries) {
                 if (info.id.equals(modid)) {
@@ -328,8 +328,9 @@ public abstract class MidnightConfig {
             this.centerListVertically = false;
             textRenderer = minecraftClient.textRenderer;
         }
+
         @Override
-        public int getScrollbarPositionX() { return this.width -7; }
+        protected int getScrollbarX() { return this.width -7; }
 
         public void addButton(List<ClickableWidget> buttons, Text text) {
             this.addEntry(ButtonEntry.create(buttons, text));

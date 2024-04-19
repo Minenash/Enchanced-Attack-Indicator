@@ -2,9 +2,9 @@ package com.minenash.enhanced_attack_indicator;
 
 import net.fabricmc.api.ClientModInitializer;
 import com.minenash.enhanced_attack_indicator.config.Config;
-import com.minenash.enhanced_attack_indicator.mixin.ClientPlayerInteractionManagerAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
 
 public class EnhancedAttackIndicator implements ClientModInitializer {
@@ -24,7 +24,8 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		if (Config.showBlockBreaking) {
-			float breakingProgress = ((ClientPlayerInteractionManagerAccessor) MinecraftClient.getInstance().interactionManager).getCurrentBreakingProgress();
+			float breakingProgress = MinecraftClient.getInstance().interactionManager.getBlockBreakingProgress();
+
 
 			if (breakingProgress > 0)
 				return breakingProgress;
@@ -51,7 +52,7 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 		if (Config.showFoodAndPotions) {
 			ItemStack stack = player.getActiveItem();
 			Item item = stack.getItem();
-			if (item.isFood() || item == Items.POTION) {
+			if (item.getComponents().contains(DataComponentTypes.FOOD) || item == Items.POTION) {
 				float itemCooldown = (float) player.getItemUseTime() / stack.getMaxUseTime();
 				return itemCooldown == 0.0F ? 1.0F : itemCooldown;
 			}
@@ -70,8 +71,8 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 				return cooldown;
 		}
 
-		if (Config.showRangeWeaponDraw && (mainHand.getItem() == Items.CROSSBOW && mainHand.getNbt().getBoolean("Charged")
-		                                 || offHand.getItem() == Items.CROSSBOW && offHand.getNbt().getBoolean("Charged")))
+		if (Config.showRangeWeaponDraw && (mainHand.getItem() == Items.CROSSBOW && CrossbowItem.isCharged(mainHand)
+		                                 || offHand.getItem() == Items.CROSSBOW && CrossbowItem.isCharged(mainHand)))
 			return 2.0F;
 
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.LAST)

@@ -24,7 +24,6 @@
   "mixins": [
     "enhanced_attack_indicator.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
