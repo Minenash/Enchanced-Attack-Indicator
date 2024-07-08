@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,9 +39,9 @@ public class InGameHudMixin {
 		return false;
 	}
 
-	private static final Identifier CROSSHAIR_ATTACK_INDICATOR_FULL_TEXTURE = new Identifier("hud/crosshair_attack_indicator_full");
+	private static final Identifier CROSSHAIR_ATTACK_INDICATOR_FULL_TEXTURE = Identifier.of("hud/crosshair_attack_indicator_full");
 	@Inject(method = "renderCrosshair", at = @At(value = "TAIL"))
-	private void showPlus(DrawContext context, float tickDelta, CallbackInfo info) {
+	private void showPlus(DrawContext context, RenderTickCounter tickDelta, CallbackInfo info) {
 		if (renderFullness) {
 			RenderSystem.enableBlend();
 			RenderSystem.blendFuncSeparate(

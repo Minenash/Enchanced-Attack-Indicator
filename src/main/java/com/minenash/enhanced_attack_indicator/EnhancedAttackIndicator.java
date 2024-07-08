@@ -39,11 +39,11 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 				return progress == 1.0F ? 2.0F : progress;
 			}
 			if (item == Items.CROSSBOW) {
-				float progress = (stack.getMaxUseTime() - player.getItemUseTimeLeft()) / (float) CrossbowItem.getPullTime(stack);
+				float progress = (stack.getMaxUseTime(player) - player.getItemUseTimeLeft()) / (float) CrossbowItem.getPullTime(stack, player);
 				return progress >= 1.0F ? 2.0F : progress;
 			}
 			if (item == Items.TRIDENT) {
-				float progress = (stack.getMaxUseTime() - player.getItemUseTimeLeft()) / 10.0F;
+				float progress = (stack.getMaxUseTime(player) - player.getItemUseTimeLeft()) / 10.0F;
 				return progress >= 1.0F ? 2.0F : progress;
 			}
 		}
@@ -52,7 +52,7 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			ItemStack stack = player.getActiveItem();
 			Item item = stack.getItem();
 			if (item.getComponents().contains(DataComponentTypes.FOOD) || item == Items.POTION) {
-				float itemCooldown = (float) player.getItemUseTime() / stack.getMaxUseTime();
+				float itemCooldown = (float) player.getItemUseTime() / stack.getMaxUseTime(player);
 				return itemCooldown == 0.0F ? 1.0F : itemCooldown;
 			}
 		}
