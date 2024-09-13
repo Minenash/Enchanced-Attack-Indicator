@@ -9,6 +9,7 @@
   "enhanced_attack_indicator.midnightconfig.weaponCoolDownImportance": "攻击冷却时间优先级",
   "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.FIRST": "最高",
   "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.MIDDLE": "中等",
-  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.LAST": "最后"
-
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.LAST": "最后",
+  "enhanced_attack_indicator.midnightconfig.showSleep": "显示睡眠进度",
+  "enhanced_attack_indicator.midnightconfig.showItemContainerFullness": "显示潜影盒充满度"
 }

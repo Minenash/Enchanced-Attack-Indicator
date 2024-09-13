@@ -7,6 +7,8 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
 
+import java.util.List;
+
 public class EnhancedAttackIndicator implements ClientModInitializer {
 
 	@Override
@@ -22,6 +24,12 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.FIRST && weaponProgress < 1.0F)
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
+
+		if (Config.showSleep) {
+			int sleep = player.getSleepTimer();
+			if (sleep > 0 && sleep <= 100)
+				return sleep == 100 ? 2.0F : sleep / 100.0F;
+		}
 
 		if (Config.showBlockBreaking) {
 			float breakingProgress = MinecraftClient.getInstance().interactionManager.getBlockBreakingProgress();
@@ -54,6 +62,22 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			if (item.getComponents().contains(DataComponentTypes.FOOD) || item == Items.POTION) {
 				float itemCooldown = (float) player.getItemUseTime() / stack.getMaxUseTime(player);
 				return itemCooldown == 0.0F ? 1.0F : itemCooldown;
+			}
+		}
+
+		if (Config.showItemContainerFullness) {
+			ItemStack stack = player.getMainHandStack();
+			var container = stack.get(DataComponentTypes.CONTAINER);
+			if (container != null) {
+				List<ItemStack> items = container.stream().toList();
+				int total = 0;
+				int maxTotal = 64 * (27-items.size());
+				for (ItemStack item : items) {
+					total += item.getCount();
+					maxTotal += item.getMaxCount();
+				}
+				float result = (float) total / maxTotal;
+				return result == 1.0F ? 2.0F : result;
 			}
 		}
 

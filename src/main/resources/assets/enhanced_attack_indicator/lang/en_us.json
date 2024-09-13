@@ -7,6 +7,8 @@
   "enhanced_attack_indicator.midnightconfig.disablePickaxesAndShovels": "Disable Pickaxe's & Shovel's Attack Cooldown",
   "enhanced_attack_indicator.midnightconfig.disableAxes": "Disable Axe's Attack Cooldown",
   "enhanced_attack_indicator.midnightconfig.weaponCoolDownImportance": "Attack Cooldown Priority",
+  "enhanced_attack_indicator.midnightconfig.showSleep": "Show Sleep Progress",
+  "enhanced_attack_indicator.midnightconfig.showItemContainerFullness": "Show Shulker Fullness",
   "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.FIRST": "First",
   "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.MIDDLE": "Middle",
   "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.LAST": "Last"
