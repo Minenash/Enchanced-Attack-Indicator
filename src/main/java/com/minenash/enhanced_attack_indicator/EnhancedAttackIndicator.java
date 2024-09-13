@@ -79,6 +79,13 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 				float result = (float) total / maxTotal;
 				return result == 1.0F ? 2.0F : result;
 			}
+			var bundle = stack.get(DataComponentTypes.BUNDLE_CONTENTS);
+			if (bundle != null) {
+				int total = 0;
+				for (ItemStack item : bundle.iterate())
+					total += item.getCount();
+				return total / 64F;
+			}
 		}
 
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.MIDDLE && weaponProgress < 1.0F)
