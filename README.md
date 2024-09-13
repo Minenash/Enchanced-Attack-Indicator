@@ -7,6 +7,8 @@ Added Actions:
 * Bows, crossbow, trident drawing
 * Eating foods
 * Items with a cooldown (shields, chorus fruit, enderpearls).
+* Sleep Progress
+* Fullness of Shulker Boxes / Bundles
 
 Other Features:
 * Ability to enable/disable the above individually
